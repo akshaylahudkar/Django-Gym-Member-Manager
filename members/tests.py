@@ -6,7 +6,7 @@ import datetime
 class MemberTestCase(TestCase):
     def setUp(self):
         Member.objects.create(
-                                first_name='Omkar',
+                                first_name='Akshay',
                                 last_name='Pathak',
                                 mobile_number='80879966340',
                                 email='omkarpathak27@gmail.com',
