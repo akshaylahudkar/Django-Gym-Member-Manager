@@ -92,28 +92,102 @@
                   {{ form.address | add_css:"form-control" }}
                 </div>
                 <div class="col form-group">
-                  <label for="address">{{ form.medical_history.label }}</label>
+                  <label for="medical_history">{{ form.medical_history.label }}</label>
                   {{ form.medical_history | add_css:"form-control" }}
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                  <label for="subscription_type">{{ form.subscription_type.label }}<span class="req"> *</span></label>
+                  <label for="subscription_type"  >{{ form.subscription_type.label }}<span class="req"> *</span></label>
                   {{ form.subscription_type | add_css:"form-control" }}
                 </div>
+
+
+
+                </div>
+
+
+                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                     <!-- The above line needs to be separate from the script tag that contains your JQuery -->
+                     <script>
+                      $(document).ready(function () {
+                          $("#id_subscription_type").change(function () {
+                          var subscription_type = $(this).val()
+
+                           });
+
+                            $("#id_subscription_period").change(function () {
+                          var subscription_period = $(this).val()
+
+
+                               $("#id_total_amount").val(subscription_period * 500);
+                           });
+
+
+
+                           $("#id_paid_amount").change(function () {
+                          var paid_amount = $(this).val()
+
+
+                               $("#id_remaining_amount").val( $("#id_total_amount").val()-paid_amount);
+
+                               if($("#id_remaining_amount").val() > 0){
+                                $("#id_fee_status").val("pending")
+                                }
+                                else $("#id_fee_status").val("paid")
+                           });
+
+                           $("#id_fee_status").change(function () {
+                          var fee_status = $(this).val()
+
+
+                               $("#id_fee_status").val( $("#id_total_amount").val()-paid_amount);
+                           });
+
+
+
+                      });
+
+
+                      </script>
+
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label for="subscription_period">{{ form.subscription_period.label }}<span class="req"> *</span></label>
                   {{ form.subscription_period | add_css:"form-control" }}
                 </div>
+
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                  <label for="amount">{{ form.amount.label }}<span class="req"> *</span></label>
+                  <label for="total_amount">{{ form.total_amount.label }}</label>
+                  <div class="input-group" >
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" >₹</span>
+                      </div>
+                      {{ form.total_amount | add_css:"form-control" }}
+                  </div>
+                </div>
+
+
+
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <label for="paid_amount">{{ form.paid_amount.label }}<span class="req"> *</span></label>
                   <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">₹</span>
                       </div>
-                      {{ form.amount | add_css:"form-control" }}
+                      {{ form.paid_amount | add_css:"form-control" }}
                   </div>
                 </div>
+
+                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <label for="remaining_amount">{{ form.remaining_amount.label }}</label>
+                 <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">₹</span>
+                      </div>
+                      {{ form.remaining_amount | add_css:"form-control" }}
+                  </div>
+                </div>
+
               </div>
               <div class="row">
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">

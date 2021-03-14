@@ -13,7 +13,7 @@ class MemberTestCase(TestCase):
                                 registration_date=datetime.datetime.now(),
                                 subscription_type='gym',
                                 subscription_period='1',
-                                amount='500',
+                                paid_amount='500',
                                 fee_status='paid',
                                 batch='morning',
                             )
