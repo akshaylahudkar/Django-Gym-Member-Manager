@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('registration_upto', models.DateField()),
                 ('subscription_type', models.CharField(choices=[('gym', 'Gym'), ('cross_fit', 'Cross Fit'), ('gym_and_cross_fit', 'Gym + Cross Fit')], max_length=30)),
                 ('subscription_period', models.CharField(choices=[('1', '1 Month'), ('3', '3 Months'), ('6', '6 Months'), ('12', '12 Months')], max_length=30)),
-                ('amount', models.IntegerField()),
+                ('paid_amount', models.IntegerField()),
             ],
         ),
     ]

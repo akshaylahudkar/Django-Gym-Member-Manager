@@ -96,24 +96,69 @@
                   {{ form.medical_history | add_css:"form-control" }}
                 </div>
             </div>
+
             <div class="row">
-                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12" id="subscription_select"  >
                   <label for="subscription_type">{{ form.subscription_type.label }}<span class="req"> *</span></label>
                   {{ form.subscription_type | add_css:"form-control" }}
                 </div>
+                console.log("hello)
+                console.log(form.subscription_type)
+                <script type="text/javascript">
+
+
+                        document.getElementById("subscription_select").addEventListener("onchange", function(){
+                        alert("hello");
+
+                    }, false);
+
+                        </script>
+
+
+
+            <!--
+                        <select id ="ddl" name="ddl" onmousedown="this.value='';" onchange="jsFunction(this.value);">
+                          <option value='1'>One</option>
+                          <option value='2'>Two</option>
+                          <option value='3'>Three</option>
+                        </select>
+                -->
+
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label for="subscription_period">{{ form.subscription_period.label }}<span class="req"> *</span></label>
                   {{ form.subscription_period | add_css:"form-control" }}
                 </div>
+
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                  <label for="amount">{{ form.amount.label }}<span class="req"> *</span></label>
+                  <label for="total_amount">{{ form.total_amount.label }}<span class="req"> *</span></label>
                   <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">₹</span>
                       </div>
-                      {{ form.amount | add_css:"form-control" }}
+                      {{ form.total_amount | add_css:"form-control" }}
                   </div>
                 </div>
+
+
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <label for="paid_amount">{{ form.paid_amount.label }}<span class="req"> *</span></label>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">₹</span>
+                      </div>
+                      {{ form.paid_amount | add_css:"form-control" }}
+                  </div>
+                </div>
+
+
+
+
+
+                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <label for="remaining_amount">{{ form.remaining_amount.label }}</label>
+                 <label for="remaining_amount1">{{ form.total_amount | add_css:"form-control" }}</label>
+                </div>
+
               </div>
               <div class="row">
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">

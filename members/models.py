@@ -25,6 +25,8 @@ SUBSCRIPTION_PERIOD_CHOICES = (
     ('12', '12 Months'),
 )
 
+
+
 FEE_STATUS = (
     ('paid', 'Paid'),
     ('pending', 'Pending'),
@@ -64,7 +66,11 @@ class Member(models.Model):
                                 choices=SUBSCRIPTION_PERIOD_CHOICES,
                                 default=SUBSCRIPTION_PERIOD_CHOICES[0][0]
                             )
-    amount = models.CharField(max_length=30)
+    total_amount=models.CharField(max_length=30)
+    paid_amount = models.CharField(max_length=30)
+    remaining_amount = models.CharField(max_length=30)
+
+
     fee_status = models.CharField(
                                 ('Fee Status'),
                                 max_length=30,
@@ -115,11 +121,23 @@ class AddMemberForm(ModelForm):
                 raise forms.ValidationError('Mobile number should be 10 digits long.')
         return mobile_number
 
-    def clean_amount(self):
-        amount = self.cleaned_data.get('amount')
-        if not amount.isdigit():
+    def clean_paid_amount(self):
+        paid_amount = self.cleaned_data.get('paid_amount')
+        if not paid_amount.isdigit():
             raise forms.ValidationError('Amount should be a number')
-        return amount
+        return paid_amount
+
+    def clean_remaining_amount(self):
+        remaining_amount = self.cleaned_data.get('remaining_amount')
+        if not remaining_amount.isdigit():
+            raise forms.ValidationError('Amount should be a number')
+        return remaining_amount
+
+    def clean_total_amount(self):
+        total_amount = self.cleaned_data.get('total_amount')
+        if not total_amount.isdigit():
+            raise forms.ValidationError('Amount should be a number')
+        return total_amount
 
     def clean(self):
         cleaned_data = super().clean()
@@ -150,15 +168,15 @@ class UpdateMemberGymForm(forms.Form):
     subscription_type  = forms.ChoiceField(choices=SUBSCRIPTION_TYPE_CHOICES)
     subscription_period = forms.ChoiceField(choices=SUBSCRIPTION_PERIOD_CHOICES)
     fee_status = forms.ChoiceField(choices=FEE_STATUS)
-    amount = forms.CharField()
+    paid_amount = forms.CharField()
     batch = forms.ChoiceField(choices=BATCH)
     stop = forms.ChoiceField(label='Status', choices=STATUS)
 
-    def clean_amount(self):
-        amount = self.cleaned_data.get('amount')
-        if not amount.isdigit():
+    def clean_paid_amount(self):
+        paid_amount = self.cleaned_data.get('paid_amount')
+        if not paid_amount.isdigit():
             raise forms.ValidationError('Amount should be a number')
-        return amount
+        return paid_amount
 
 class UpdateMemberInfoForm(forms.Form):
     first_name     = forms.CharField(max_length=50)
